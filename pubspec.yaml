@@ -1,0 +1,17 @@
+name: appflowy_feature_vim_keybindings
+description: Vim keybindings for AppFlowy Editor.
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  appflowy_editor: ^6.2.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  lints: ^2.1.0
