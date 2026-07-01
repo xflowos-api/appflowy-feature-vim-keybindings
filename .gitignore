@@ -1,0 +1,28 @@
+# https://dart.dev/guides/libraries/private-files
+# Created by `dart pub get`
+.dart_tool/
+
+# Packages
+.packages
+packages/
+
+# Flutter/Dart build artifacts
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.project
+.pub-cache/
+.pub/
+
+# Image format
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+
+# Log files
+*.log
+
+# Sensitive info
+.env*
