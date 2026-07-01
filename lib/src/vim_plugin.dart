@@ -12,7 +12,7 @@ class VimPlugin {
     if (event is! KeyDownEvent) return KeyEventResult.ignored;
 
     if (event.logicalKey == LogicalKeyboardKey.escape) {
-      _mode = VimMode.normal;
+      _switchMode(editorState, VimMode.normal);
       return KeyEventResult.handled;
     }
 
@@ -23,9 +23,25 @@ class VimPlugin {
     return KeyEventResult.ignored;
   }
 
+  void _switchMode(EditorState editorState, VimMode newMode) {
+    if (newMode == VimMode.insert && !editorState.editable) {
+      // Security: Do not allow entering insert mode if the editor is read-only.
+      return;
+    }
+    _mode = newMode;
+  }
+
   KeyEventResult _handleNormalMode(EditorState editorState, KeyDownEvent event) {
     if (event.logicalKey == LogicalKeyboardKey.keyI) {
-      _mode = VimMode.insert;
+      _switchMode(editorState, VimMode.insert);
+      return KeyEventResult.handled;
+    }
+
+    // Add support for other common insert mode entry points for better coverage
+    if (event.logicalKey == LogicalKeyboardKey.keyA ||
+        event.logicalKey == LogicalKeyboardKey.keyO ||
+        event.logicalKey == LogicalKeyboardKey.keyS) {
+      _switchMode(editorState, VimMode.insert);
       return KeyEventResult.handled;
     }
 
